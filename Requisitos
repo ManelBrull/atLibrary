@@ -1,12 +1,11 @@
 Requisitos de la librería 
 
--- > Hibernate
-	--> Implementar las clases HibernateUtil
-			Esta en el proyecto inicial porque puede ser configurable
-			
+-- > Hibernate			
 	--> Diseñar a interfaz de la clase DAO
+		Hecho
 	--> Implementar la clase DAO a partir de la interfaz
-
+		Hecho
+		
 --> Entidades
 	--> Interfaz para implementar las operaciones Crud
 	--> Interfaz para aquellas clases que formen parte de un filtro

@@ -1,9 +1,8 @@
 package at;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.wb.swt.SWTResourceManager;
 import org.junit.Test;
 
 import at.vista.interfaz.Recursos;

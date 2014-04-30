@@ -7,10 +7,18 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public abstract class DAO <T> {
+public abstract class DAO <T> implements IDAO <T> {
 	protected Session session;
 	protected Transaction tx;
 	
+	/**
+	 * Metodo que se ejecuta antes de empezar cualquier operacion con Hibernate
+	 * Generalmente es suficiente con anadir estas dos lineas:
+	 * 
+	 * 	this.session = HibernateUtil.getSessionFactory().openSession();
+	 *  tx = session.beginTransaction();
+	 *  
+	 */
 	protected abstract void iniciaOperacion();
 	
 	public void save(T o) throws HibernateException{
@@ -62,9 +70,13 @@ public abstract class DAO <T> {
 	}
 	
 	/**
-	 * El método debe contener
+	 * El método debe contener por norma general:
+	 * 
 	 * (T) session.get(T.class, id);
 	 * Adaptando T a la clase escogido
+	 * 
+	 * Se ha dejado la posibilidad de editar por si en algun futuro
+	 * se necesita acceder a un elemento con una clave primaria compuesta
 	 *  
 	 * @return
 	 */
@@ -81,10 +93,15 @@ public abstract class DAO <T> {
 		}
 		return list;
 	}
+	
 	/**
-	 * El método debe contener
+	 * El método debe contener por norma general
+	 * 
 	 * session.createQuery("from T")
-	 * Adaptando T a la clase escogida
+	 * 
+	 * Siendo T el nombre de la clase que se define como entidad en hibernate
+	 * 
+	 * 
 	 * @return
 	 */
 	protected abstract Query createQueryGetAll();
