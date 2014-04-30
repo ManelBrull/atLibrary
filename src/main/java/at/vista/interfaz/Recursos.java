@@ -14,13 +14,13 @@ public final class Recursos {
 	public static RGB AT_COLOR_AZUL = new RGB(23, 77, 147); 
 	
 	/** Path relativo donde se encuentra la imagen para el shell de Torrent **/
-	public static String shellPath = "/es/atorrent/maestro/imagenes/Escudo.ico";
+	public static String shellPath = "/Escudo.ico";
 	/** Path relativo donde se encuentra la imagen para los botones de Torrent **/
-	public static String imgBotonPath = "/es/atorrent/maestro/imagenes/imagenBoton.bmp";
+	public static String imgBotonPath = "/imagenBoton.bmp";
 	/** Path relativo donde se encuentra la imagen para salir de la aplicacion **/
-	public static String imgSalirPath = "/es/atorrent/maestro/imagenes/Salir.bmp";
+	public static String imgSalirPath = "/Salir.bmp";
 	/** Path relativo donde se encuentra la imagen para el boton del informe  de la aplicacion **/
-	public static String imgInformePath = "/es/atorrent/maestro/imagenes/Informe.bmp";
+	public static String imgInformePath = "/Informe.bmp";
 	
 	/** Nombre de la fuente para los labels Titulo 1 **/
 	public static String nombreFuenteLabelTitulo1 = "Tahoma";

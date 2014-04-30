@@ -1,0 +1,47 @@
+Requisitos de la librería 
+
+-- > Hibernate
+	--> Implementar las clases HibernateUtil
+			Esta en el proyecto inicial porque puede ser configurable
+			
+	--> Diseñar a interfaz de la clase DAO
+	--> Implementar la clase DAO a partir de la interfaz
+
+--> Entidades
+	--> Interfaz para implementar las operaciones Crud
+	--> Interfaz para aquellas clases que formen parte de un filtro
+	--> Un ejemplo de entidad clase de mantenimiento (Incorpora un Crud yun EsFiltro)
+	--> Interfaz EsCombo para aquellas clases que formen aprte de un combo
+
+--> Excepciones
+	--> Campo requerido
+
+
+--> Controladores
+ 	--> Interfaz de un controladorMantenimiento
+ 	--> Clase que implementa el controladorMantenimiento
+ 	--> Pensar como implementar los controladores de Tabulación
+ 
+ --> Vista
+ Pensar en implementar elementos típicos de Atorrent
+ 	--> Interfaz Mantenimiento
+ 	--> Interfaz Pestañas
+ 	
+ Elementos típicos de una interfaz
+ 	--> Combo ATorrentizado
+ 	--> Lista con añadido/seleccionado
+ 	
+ Recursos globales
+ 	--> Imagenes
+ 	--> Fuentes
+ 	--> Estilo Botones
+ 	--> Estilo Texto
+ 	--> Shortcut
+ 	
+ Informes 
+ 	--> Lanzador de Informes
+ 	--> Plantilla de ejemplo
+ 
+ Test Prueba
+ 	--> Tratar de probar los elementos imprescindibles
+ 
