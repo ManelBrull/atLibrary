@@ -3,8 +3,18 @@ package at.modelo.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 
+/**
+ * 
+ * @author brullp
+ *
+ * @param <T>
+ * 
+ * Interfaz que abstrae los principales metodos que las clases necesitan para 
+ * interactuar con la base de datos.
+ * 
+ * 
+ */
 public interface IDAO<T> {
 	/**
 	 * Guarda el objeto o en la base de datos

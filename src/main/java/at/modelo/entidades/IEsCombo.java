@@ -9,5 +9,11 @@ package at.modelo.entidades;
  * 
  */
 public interface IEsCombo {
+	/**
+	 * Devuelve el nombre identificativo, y el cual verá el usuario, 
+	 * de la instancia.
+	 * 
+	 * @return
+	 */
 	public String toCombo(); 
 }

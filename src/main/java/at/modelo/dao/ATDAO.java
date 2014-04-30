@@ -7,7 +7,24 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public abstract class DAO <T> implements IDAO <T> {
+/**
+ * 
+ * @author brullp
+ *
+ * @param <T> Clase de la que deseemos crear el DAO
+ * 
+ * Clase que implementa las acciones mas comunes que realizan las clases
+ * que tienen que almacenar informacion en la base de datos.
+ * 
+ * Hay varios metodos que se han implementado siguiendo el patron template
+ * para dotarles de cierta flexibilidad. En concreto son: 
+ * 		T sessionGet(int id);
+ * 		Query createQueryGetAll();
+ * Se ha documentado sus casos mas usuales, pero podran modificarse a gusto
+ * del desarrollador
+ * 
+ */
+public abstract class ATDAO <T> implements IDAO <T> {
 	protected Session session;
 	protected Transaction tx;
 	

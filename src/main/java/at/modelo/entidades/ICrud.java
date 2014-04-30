@@ -1,45 +1,45 @@
 package at.modelo.entidades;
 
 import java.util.Iterator;
-
 import org.hibernate.HibernateException;
+
 /**
- * 
  * @author brullp
+ *	
+ * @param <T> Nombre de la clase que implementa la interfaz
+ * 
+ * Esta interfaz debe implementarse para todas aquellas clases 
+ * que el usuario pretenda que sus datos persistan.
  *
- *	Esta interfaz debe implementarse para todas aquellas clases 
- *  que el usuario pueda modificar.
- *
- * @param <E>
  */
-public interface ICrud <E> {
+public interface ICrud <T> {
 	/**
-	 * Saves the current object to the database
+	 * Guarda el objeto en la base de datos
 	 * @throws HibernateException
 	 */
 	public void save() throws HibernateException;
 	/**
-	 * Delete the current object from the database
+	 * Borra el objeto de la base de datos
 	 * @throws HibernateException
 	 */
 	public void delete() throws HibernateException;
 	/**
-	 * Edit the current object from the information in nuevo
+	 * Edita la informacion del objeto actual con la de nuevo
 	 * @param nuevo
 	 * @throws HibernateException
 	 */
-	public void update(E nuevo) throws HibernateException;
+	public void update(T nuevo) throws HibernateException;
 	/**
-	 * Retrieve the element from database
-	 * @param id of the element to get
+	 * Obtiene el elemento por su id
+	 * @param id 
 	 * @return
 	 * @throws HibernateException
 	 */
-	public E get(int id) throws HibernateException;
+	public T get(int id) throws HibernateException;
 	/**
-	 * Retrieve all the elements of the database 
+	 * Obtiene todos los elementos de la base de datos 
 	 * @return
 	 * @throws HibernateException
 	 */
-	public Iterator<E> getAll() throws HibernateException;
+	public Iterator<T> getAll() throws HibernateException;
 }

@@ -8,9 +8,13 @@ Requisitos de la librería
 		
 --> Entidades
 	--> Interfaz para implementar las operaciones Crud
+		Hecho
 	--> Interfaz para aquellas clases que formen parte de un filtro
+		Hecho
 	--> Un ejemplo de entidad clase de mantenimiento (Incorpora un Crud yun EsFiltro)
+		No tiene demasiado sentido por el momento
 	--> Interfaz EsCombo para aquellas clases que formen aprte de un combo
+		Hecho
 
 --> Excepciones
 	--> Campo requerido
