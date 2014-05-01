@@ -18,11 +18,16 @@ Requisitos de la librería
 
 --> Excepciones
 	--> Campo requerido
+		Hecho
 
 
 --> Controladores
- 	--> Interfaz de un controladorMantenimiento
+	--> IControlador (controlador basico de la interfaz)
+			Hecho
+	--> IControladorMantenimiento
+			Hecho
  	--> Clase que implementa el controladorMantenimiento
+ 			hecho
  	--> Pensar como implementar los controladores de Tabulación
  
  --> Vista

@@ -12,23 +12,39 @@ import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
+import at.modelo.entidades.excepciones.CampoRequeridoException;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.Recursos;
 
-public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> {
+public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> implements IControladorMantenimiento {
+	/**
+	 * Interfaz que se controla
+	 */
 	protected IMantenimiento mantenimiento;
+	/**
+	 * Referencia a los accesos directos
+	 */
 	protected Listener shortcut;
+	/**
+	 * Objeto seleccionado
+	 */
 	protected T entidadSeleccionado;
+	/**
+	 * Los resultados del filtro
+	 */
 	protected ArrayList <T> filtro;
+	
+	/**
+	 * Constructor. Se ejecuta desde la itnerfaz que se controla
+	 * @param mant
+	 */
+	public ControladorMantenimiento(IMantenimiento mant){
+		this.mantenimiento = mant;
+	}
 	
 	public void inicializar() {
 		addShortcuts();
 		visibilidadBtn();
-	}
-	
-	public ControladorMantenimiento(IMantenimiento mant){
-		this.mantenimiento = mant;
-		
 	}
 	
 	public void addShortcuts() {
@@ -85,20 +101,26 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 					mantenimiento.getShell(),
 					"Error",
 					"No se ha podido guardar el elemento en la base de datos");
+		} catch (CampoRequeridoException ex){
+			MessageDialog.openError(
+					mantenimiento.getShell(),
+					"Error",
+					"No se ha podido guardar el elemento porque hay campos requeridos"
+					+ " que no se han dado un valor válido");
 		}
 	}
 
 	public void grabar() {
-		T usr = creaObjeto();
-		if (usr != null){
-			if(entidadSeleccionado.equals(usr)){
-				MessageDialog.openInformation(
-						mantenimiento.getShell(),
-						"Error",
-						"No se puede editar porque no se han realizado cambios");
-			}
-			else{
-				try{
+		try {
+			T usr = creaObjeto();
+			if (usr != null){
+				if(entidadSeleccionado.equals(usr)){
+					MessageDialog.openInformation(
+							mantenimiento.getShell(),
+							"Error",
+							"No se puede editar porque no se han realizado cambios");
+				}
+				else{
 					entidadSeleccionado.update(usr);
 					mantenimiento.getBtnBuscar().notifyListeners(SWT.Selection, new Event());
 					borrar();
@@ -106,15 +128,23 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 							mantenimiento.getShell(),
 							"Información",
 							"Se ha editado satisfactoriamente");
-				} catch(HibernateException he) {
-					MessageDialog.openError(
-							mantenimiento.getShell(),
-							"Error",
-							"No se ha podido editar");
 				}
 			}
+		} catch(HibernateException he) {
+			MessageDialog.openError(
+					mantenimiento.getShell(),
+					"Error",
+					"No se ha podido editar");
+		} catch (CampoRequeridoException ex){
+			MessageDialog.openError(
+					mantenimiento.getShell(),
+					"Error",
+					"No se ha podido guardar el elemento porque hay campos requeridos"
+							+ " que no se han dado un valor válido");
 		}
 	}
+
+
 
 	public void eliminar() {
 		if(entidadSeleccionado == null){
@@ -195,7 +225,16 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 		}
 	}
 	/**
+	 * Debe obtenerse un iterador que devuelva todos los resultados
+	 * Obtenidos al buscar mediante el filtro. Se ejecuta desde buscar.
+	 * No hay que olvidar de crear el método en la entidad correspondiente
+	 * y de pasar los parametros necesarios para filtrar los resultados
+	 * de la base de datos.
+	 * 
+	 * Generalmente, el código que contiene será parecido a esto
+	 * 
 	 * Iterator <T> iter = new T().getFiltro();
+	 * 
 	 * @return
 	 */
 	public abstract Iterator<T> getIteratorFiltro();
@@ -208,6 +247,10 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 			visibilidadBtn();
 		}
 	}
+	/**
+	 * Se ejecuta cuando se ha seleccionado un elemento desde la interfaz
+	 * y carga los valores en los widgets de al interfaz
+	 */
 	public abstract void rellenarInterfaz();
 
 	public void borrar() {
@@ -217,10 +260,28 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 		filtro = new ArrayList<T>();
 		borrarInterfaz();
 	}
+	/**
+	 * Se ejecuta cuando se selecciona el boton borrar y tiene que devolver el
+	 * valor de los widgets de la interfaz a su estado inicial.
+	 */
 	public abstract void borrarInterfaz();
-
-	public abstract T creaObjeto();
 	
+	/**
+	 * Crea un objeto leyendo los datos de la interfaz.
+	 * IMPORTANTE!! NO TIENE QUE GUARDARLO EN LA BASE DE DATOS
+	 * Lanza la excepción si algún campo requerido no se ha introducido
+	 * 
+	 * @return
+	 * @throws CampoRequeridoException
+	 */
+	public abstract T creaObjeto() throws CampoRequeridoException;
+	
+	/**
+	 * Crea un objeto leyendo los datos de la interfaz.
+	 * IMPORTANTE!! NO TIENE QUE GUARDARLO EN LA BASE DE DATOS
+	 * Si algo va mal devuelve null
+	 * @return
+	 */
 	public abstract T creaObjetoSilencioso();
 		
 	public boolean comprobarCambiosObjetoActivo() {
