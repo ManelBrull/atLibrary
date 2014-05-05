@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public abstract class ATorrentDialogEscudo extends Dialog {
+public abstract class ATDialogEscudo extends Dialog {
 		
 	/** Titulo que se mostrara en el shell **/
 	private String titulo;
@@ -30,12 +30,12 @@ public abstract class ATorrentDialogEscudo extends Dialog {
 	 * @param title titulo del shell
 	 * @param titleCabecera titulo de la cabecera
 	 */
-	public ATorrentDialogEscudo(Shell parent, String title, String titleCabecera) {
+	public ATDialogEscudo(Shell parent, String title, String titleCabecera) {
 		super(parent, Recursos.MY_APP_STYLE);
 		setTitulo(title);
 		setTituloCabecera(titleCabecera);
 		setAzul(SWTResourceManager.getColor(Recursos.AT_COLOR_AZUL));
-		setShellImage(SWTResourceManager.getImage(ATorrentDialogEscudo.class, Recursos.shellPath));
+		setShellImage(SWTResourceManager.getImage(ATDialogEscudo.class, Recursos.shellPath));
 		parent.addDisposeListener(new DisposeListener() {
 			@Override
 			public void widgetDisposed(DisposeEvent arg0) {

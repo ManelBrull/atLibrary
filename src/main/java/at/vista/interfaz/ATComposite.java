@@ -5,7 +5,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public class AtorrentComposite extends Composite {
+public class ATComposite extends Composite {
 
 	/** Color para rellenar los margenes **/
 	private Color azul; 
@@ -23,7 +23,7 @@ public class AtorrentComposite extends Composite {
 	 * @param parent
 	 * @param style
 	 */
-	public AtorrentComposite(Composite parent, int style) {
+	public ATComposite(Composite parent, int style) {
 		super(parent, style);
 		inicializarValoresDefecto();
 		

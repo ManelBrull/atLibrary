@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public class ATorrentStringDialog extends ATorrentDialog {
+public class ATStringDialog extends ATDialog {
 
 	protected String result;
 	protected Shell shell;
@@ -32,7 +32,7 @@ public class ATorrentStringDialog extends ATorrentDialog {
 	 * @param parent
 	 * @param style
 	 */
-	public ATorrentStringDialog(Shell parent, String title, String textoAMostrar, int width) {
+	public ATStringDialog(Shell parent, String title, String textoAMostrar, int width) {
 		super(parent, title);
 		this.width = width;
 		contLabel = textoAMostrar;

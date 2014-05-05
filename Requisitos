@@ -15,6 +15,9 @@ Requisitos de la librería
 		No tiene demasiado sentido por el momento
 	--> Interfaz EsCombo para aquellas clases que formen aprte de un combo
 		Hecho
+	--> Entidad cuyo unico valor es un String para 
+		combos en los que añadir elementos
+			PENDIENTE
 
 --> Excepciones
 	--> Campo requerido
@@ -30,15 +33,21 @@ Requisitos de la librería
  			Hecho
  	--> Pensar como implementar los controladores de Tabulación
  			PENDIENTE
+ 	--> IControladorComboEntidad
+ 			PENDIENTE
+ 	--> ControladorComboEntidad
+ 			PENDIENTE
  			
  --> Vista
  Pensar en implementar elementos típicos de Atorrent
  	--> Interfaz Mantenimiento
  	--> Interfaz Pestañas
+ 	--> Interfaz Combo Entidad
  	
  Elementos típicos de una interfaz
  	--> Combo ATorrentizado
- 	--> Lista con añadido/seleccionado
+ 	--> Lista con añadido/seleccionado (Combo Entidad)
+ 	--> Fecha Atorrentizada
  	
  Plantillas
  	--> Moverlas al proyecto inicial, ya que se utilizan copiando

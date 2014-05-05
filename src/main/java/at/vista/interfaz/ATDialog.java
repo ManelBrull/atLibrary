@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public abstract class ATorrentDialog extends Dialog {
+public abstract class ATDialog extends Dialog {
 		
 	/** Titulo que se mostrara en el shell **/
 	private String titulo;
@@ -31,11 +31,11 @@ public abstract class ATorrentDialog extends Dialog {
 	 * @param title titulo del shell
 	 * @param titleCabecera titulo de la cabecera
 	 */
-	public ATorrentDialog(Shell parent, String title) {
+	public ATDialog(Shell parent, String title) {
 		super(parent, Recursos.MY_APP_STYLE);
 		setTitulo(title);
 		setAzul(SWTResourceManager.getColor(Recursos.AT_COLOR_AZUL));
-		setShellImage(SWTResourceManager.getImage(ATorrentDialog.class, Recursos.shellPath));
+		setShellImage(SWTResourceManager.getImage(ATDialog.class, Recursos.shellPath));
 		labelFont = SWTResourceManager.getFont(
 				Recursos.nombreFuenteLabelNormal,
 				Recursos.tamanoFuenteLabelNormal,
