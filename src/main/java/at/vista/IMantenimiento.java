@@ -3,7 +3,15 @@ package at.vista;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
-
+/**
+ * 
+ * @author brullp
+ * 
+ * Métodos necesarios para que la clase ControladorMantenimiento funcione
+ * Son un conjunto de métodos get con elementos comunes de todas las
+ * interfaces de Mantenimiento.
+ *
+ */
 public interface IMantenimiento {
 	public Button getBtnBuscar();
 	public Button getBtnNuevo();

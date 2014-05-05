@@ -27,9 +27,10 @@ Requisitos de la librería
 	--> IControladorMantenimiento
 			Hecho
  	--> Clase que implementa el controladorMantenimiento
- 			hecho
+ 			Hecho
  	--> Pensar como implementar los controladores de Tabulación
- 
+ 			PENDIENTE
+ 			
  --> Vista
  Pensar en implementar elementos típicos de Atorrent
  	--> Interfaz Mantenimiento
@@ -38,6 +39,11 @@ Requisitos de la librería
  Elementos típicos de una interfaz
  	--> Combo ATorrentizado
  	--> Lista con añadido/seleccionado
+ 	
+ Plantillas
+ 	--> Moverlas al proyecto inicial, ya que se utilizan copiando
+ 		y pegando código
+ 		Hecho
  	
  Recursos globales
  	--> Imagenes
