@@ -13,6 +13,10 @@ import org.eclipse.swt.widgets.Table;
  *
  */
 public interface IMantenimiento {
+	public void openInformation(String cabecera, String mensaje);
+	public void openError(String cabecera, String mensaje);
+	public int openQuestion(String cabecera, String mensaje, String[] opciones);
+	
 	public Button getBtnBuscar();
 	public Button getBtnNuevo();
 	public Button getBtnGrabar();

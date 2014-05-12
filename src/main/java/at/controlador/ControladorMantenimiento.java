@@ -90,20 +90,19 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 			T usr = creaObjeto();
 			if (usr != null){
 				usr.save();
-				MessageDialog.openInformation(
-						mantenimiento.getShell(),
-						"Informacion",
-						"Se ha creado el elemento satisfactoriamente");
+				mantenimiento.openInformation(
+						"Informacion", 
+						"Se ha creado el elemento satisfactoriamente"
+						);
 				entidadSeleccionado = usr;
 		}
 		} catch (HibernateException he){
-			MessageDialog.openError(
-					mantenimiento.getShell(),
+			mantenimiento.openError(
 					"Error",
-					"No se ha podido guardar el elemento en la base de datos");
+					"No se ha podido guardar el elemento en la base de datos"
+					);
 		} catch (CampoRequeridoException ex){
-			MessageDialog.openError(
-					mantenimiento.getShell(),
+			mantenimiento.openError(
 					"Error",
 					"No se ha podido guardar el elemento porque hay campos requeridos"
 					+ " que no se han dado un valor válido");
@@ -115,8 +114,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 			T usr = creaObjeto();
 			if (usr != null){
 				if(entidadSeleccionado.equals(usr)){
-					MessageDialog.openInformation(
-							mantenimiento.getShell(),
+					mantenimiento.openInformation(
 							"Error",
 							"No se puede editar porque no se han realizado cambios");
 				}
@@ -124,20 +122,17 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 					entidadSeleccionado.update(usr);
 					mantenimiento.getBtnBuscar().notifyListeners(SWT.Selection, new Event());
 					borrar();
-					MessageDialog.openInformation(
-							mantenimiento.getShell(),
+					mantenimiento.openInformation(
 							"Información",
 							"Se ha editado satisfactoriamente");
 				}
 			}
 		} catch(HibernateException he) {
-			MessageDialog.openError(
-					mantenimiento.getShell(),
+			mantenimiento.openError(
 					"Error",
 					"No se ha podido editar");
 		} catch (CampoRequeridoException ex){
-			MessageDialog.openError(
-					mantenimiento.getShell(),
+			mantenimiento.openError(
 					"Error",
 					"No se ha podido guardar el elemento porque hay campos requeridos"
 							+ " que no se han dado un valor válido");
@@ -148,36 +143,31 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 
 	public void eliminar() {
 		if(entidadSeleccionado == null){
-			MessageDialog.openError(
-					mantenimiento.getShell(),
+			mantenimiento.openError(
 					"Error",
 					"No ha seleccionado un elemento para eliminar");
 		}
 		else{
-			MessageDialog dialog = new MessageDialog(
-					mantenimiento.getShell(), 
-					"Eliminar", 
-					null,
+			int result = mantenimiento.openQuestion(
+					"Eliminar",
 					"Va a eliminar el elemento seleccionada"
-					+". ¿Desea continuar?",
-					MessageDialog.QUESTION,
-					new String[]{"Si", "No"},
-					0 );
-			if(dialog.open() == 0){
+							+". ¿Desea continuar?",
+					new String[]{"Si", "No"}
+					);
+			
+			if(result == 0){
 				try {
 					entidadSeleccionado.delete();
 					entidadSeleccionado = null;
 					borrar();
 					visibilidadBtn();
-					MessageDialog.openInformation(
-							mantenimiento.getShell(),
+					mantenimiento.openInformation(
 							"Informacion",
 							"El elemento seleccionado se ha borrado satisfactoriamente "
 							);
 					mantenimiento.getBtnBuscar().notifyListeners(SWT.Selection, new Event());
 				} catch(HibernateException he){
-					MessageDialog.openError(
-							mantenimiento.getShell(),
+					mantenimiento.openError(
 							"Error",
 							"No se ha podido eliminar la actuacion");
 				} 
@@ -188,15 +178,12 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 
 	public void salir() {
 		if(comprobarCambiosObjetoActivo()){
-			MessageDialog dialog = new MessageDialog(
-					mantenimiento.getShell(), 
+			int result = mantenimiento.openQuestion(
 					"Cambios", 
-					null,
-					"Has cambiado datos del objeto. ¿Desea grabarlos?",
-					MessageDialog.QUESTION,
-					new String[]{"Si", "No"},
-					0 );
-			if(dialog.open() == 0){
+					"Has cambiado datos del objeto. ¿Desea grabarlos?", 
+					new String[]{"Si", "No"});
+			
+			if(result == 0){
 				mantenimiento.getBtnGrabar().notifyListeners(SWT.Selection, new Event());
 			}
 		}
@@ -218,8 +205,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 				item.setText(u.toTable());
 			}
 		} catch (HibernateException he){
-			MessageDialog.openError(
-					mantenimiento.getShell(),
+			mantenimiento.openError(
 					"Error",
 					"Ha ocurrido un error en la base de datos");
 		}
