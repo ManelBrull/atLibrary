@@ -2,6 +2,7 @@ package at.vista.interfaz;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public final class Recursos {
 	
@@ -21,6 +22,12 @@ public final class Recursos {
 	public static String imgSalirPath = "/Salir.bmp";
 	/** Path relativo donde se encuentra la imagen para el boton del informe  de la aplicacion **/
 	public static String imgInformePath = "/Informe.bmp";
+	/** Path relativo donde se encuentra la imagen del escudo de Torrent en grande **/
+	public static String imgEscudo = "/escudo.jpg";
+	/** Path relativo donde se encuentra las letras ajuntament de torrent en blanco **/
+	public static String imgLetras = "/ajuntamentazul.jpg";
+	
+	
 	
 	/** Nombre de la fuente para los labels Titulo 1 **/
 	public static String nombreFuenteLabelTitulo1 = "Tahoma";

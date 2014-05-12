@@ -33,8 +33,8 @@ public class ImagenesLaterales extends Composite {
 		super(parent, SWT.NONE);
 		setSize(130, 230);
 		
-		imagenEscudo = SWTResourceManager.getImage(ImagenesLaterales.class, "/es/atorrent/maestro/imagenes/escudo.jpg");
-		imagenLetras = SWTResourceManager.getImage(ImagenesLaterales.class, "/es/atorrent/maestro/imagenes/ajuntamentazul.jpg");
+		imagenEscudo = SWTResourceManager.getImage(ImagenesLaterales.class, "/escudo.jpg");
+		imagenLetras = SWTResourceManager.getImage(ImagenesLaterales.class, "/ajuntamentazul.jpg");
 		azul = SWTResourceManager.getColor(Recursos.AT_COLOR_AZUL);
 		
 		setBackground(azul);
