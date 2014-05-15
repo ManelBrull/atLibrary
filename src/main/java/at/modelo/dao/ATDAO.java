@@ -28,6 +28,8 @@ public abstract class ATDAO <T> implements IDAO <T> {
 	protected Session session;
 	protected Transaction tx;
 	
+	protected String nameEntidad;
+	
 	/**
 	 * Metodo que se ejecuta antes de empezar cualquier operacion con Hibernate
 	 * Generalmente es suficiente con anadir estas dos lineas:
@@ -103,25 +105,21 @@ public abstract class ATDAO <T> implements IDAO <T> {
 		List<T> list = null;
 		try{
 			iniciaOperacion();
-			Query myQuery = createQueryGetAll();
+			Query myQuery = session.createQuery("from nameEntidad");
 			list = myQuery.list();
 		} finally {
 			session.close();
 		}
 		return list;
 	}
-	
-	/**
-	 * El método debe contener por norma general
-	 * 
-	 * session.createQuery("from T")
-	 * 
-	 * Siendo T el nombre de la clase que se define como entidad en hibernate
-	 * 
-	 * 
-	 * @return
-	 */
-	protected abstract Query createQueryGetAll();
+
+	public String getNameEntidad() {
+		return nameEntidad;
+	}
+
+	public void setNameEntidad(String nameEntidad) {
+		this.nameEntidad = nameEntidad;
+	}
 	
 	
 }
