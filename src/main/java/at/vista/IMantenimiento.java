@@ -1,6 +1,5 @@
 package at.vista;
 
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 /**
@@ -17,11 +16,27 @@ public interface IMantenimiento {
 	public void openError(String cabecera, String mensaje);
 	public int openQuestion(String cabecera, String mensaje, String[] opciones);
 	
-	public Button getBtnBuscar();
-	public Button getBtnNuevo();
-	public Button getBtnGrabar();
-	public Button getBtnSalir();
-	public Button getBtnEliminar();
+	public void btnBuscarSelected();
+	public void btnBuscarSetTooltipText(String text);
+	public void btnBuscarIsEnabled(boolean enabled);
+	
+	public void btnNuevoSelected();
+	public void btnNuevoSetTooltipText(String text);
+	public void btnNuevoIsEnabled(boolean enabled);
+	
+	public void btnGrabarSelected();
+	public void btnGrabarSetTooltipText(String text);
+	public void btnGrabarIsEnabled(boolean enabled);
+	
+	public void btnSalirSelected();
+	public void btnSalirSetTooltipText(String text);
+	public void btnSalirIsEnabled(boolean enabled);
+	
+	public void btnEliminarSelected();
+	public void btnEliminarSetTooltipText(String text);
+	public void btnEliminarIsEnabled(boolean enabled);
+	
+	
 	public Table getTable();
 	public Shell getShell();
 	

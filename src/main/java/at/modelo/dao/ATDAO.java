@@ -19,7 +19,6 @@ import org.hibernate.Transaction;
  * Hay varios metodos que se han implementado siguiendo el patron template
  * para dotarles de cierta flexibilidad. En concreto son: 
  * 		T sessionGet(int id);
- * 		Query createQueryGetAll();
  * Se ha documentado sus casos mas usuales, pero podran modificarse a gusto
  * del desarrollador
  * 
@@ -28,6 +27,10 @@ public abstract class ATDAO <T> implements IDAO <T> {
 	protected Session session;
 	protected Transaction tx;
 	
+	/**
+	 * Nombre de la entidad necesario para obtener todos
+	 * los elementos 
+	 */
 	protected String nameEntidad;
 	
 	/**
@@ -66,7 +69,7 @@ public abstract class ATDAO <T> implements IDAO <T> {
 		}
 	}
 	
-	public void delete(T o)throws HibernateException{
+	public void delete(T o) throws HibernateException{
 		try{
 			iniciaOperacion();
 			session.delete(o);
@@ -101,15 +104,12 @@ public abstract class ATDAO <T> implements IDAO <T> {
 	 */
 	protected abstract T sessionGet(int id);
 	
-	public List<T> getAll(){
+	public List<T> getAll() {
 		List<T> list = null;
-		try{
-			iniciaOperacion();
-			Query myQuery = session.createQuery("from nameEntidad");
-			list = myQuery.list();
-		} finally {
-			session.close();
-		}
+		iniciaOperacion();
+		Query myQuery = session.createQuery("from " + nameEntidad);
+		list = myQuery.list();
+		session.close();
 		return list;
 	}
 

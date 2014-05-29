@@ -11,7 +11,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class ReportManager {
+public class ReportManager implements IAbrirInformes {
 	
 	
 	private static String imgIzq = "imagenIzq";
@@ -29,7 +29,7 @@ public class ReportManager {
 	 * @throws JRException
 	 * @throws IOException
 	 */
-	public static void lanzarReporte(InputStream jasperReport) throws ClassNotFoundException, SQLException, JRException, IOException{
+	public void lanzarReporte(InputStream jasperReport) throws ClassNotFoundException, SQLException, JRException, IOException{
 		JasperPrint jasperPrint;
 		HashMap	jasperParameter = fillParametros(null, null);
 		jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameter);
@@ -46,7 +46,7 @@ public class ReportManager {
 	 * @throws JRException
 	 * @throws IOException
 	 */
-	public static void lanzarReporte(InputStream jasperReport, String[] nomParametro, Object[] valParametro) throws ClassNotFoundException, SQLException, JRException, IOException{
+	public void lanzarReporte(InputStream jasperReport, String[] nomParametro, Object[] valParametro) throws ClassNotFoundException, SQLException, JRException, IOException{
 		JasperPrint jasperPrint;
 		HashMap	jasperParameter = fillParametros(nomParametro, valParametro);
 		jasperPrint = JasperFillManager.fillReport (jasperReport, jasperParameter);

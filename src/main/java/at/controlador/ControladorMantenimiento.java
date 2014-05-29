@@ -52,35 +52,34 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 			@Override
 			public void handleEvent(Event e) {
 				if(((e.stateMask & SWT.CTRL) == SWT.CTRL) && (e.keyCode == 'f')){
-					mantenimiento.getBtnBuscar().notifyListeners(SWT.Selection, new Event());
-					System.out.println("Buscar");
+					mantenimiento.btnBuscarSelected();
 				}
 				if(((e.stateMask & SWT.CTRL) == SWT.CTRL) && (e.keyCode == 'n')){
-					mantenimiento.getBtnNuevo().notifyListeners(SWT.Selection, new Event());
+					mantenimiento.btnNuevoSelected();
 				}
 				if(((e.stateMask & SWT.CTRL) == SWT.CTRL) && (e.keyCode == 'g')){
-					mantenimiento.getBtnGrabar().notifyListeners(SWT.Selection, new Event());
+					mantenimiento.btnGrabarSelected();
 				}
 				if((((e.stateMask & SWT.ALT) == SWT.ALT) && (e.keyCode == SWT.F4)) || 
 						(e.keyCode == SWT.ESC)){
-					mantenimiento.getBtnSalir().notifyListeners(SWT.Selection, new Event());
+					mantenimiento.btnSalirSelected();
 				}
 			}
 		};
 		mantenimiento.getShell().getDisplay().addFilter(SWT.KeyDown, shortcut);
-		mantenimiento.getBtnBuscar().setToolTipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + f"));
-		mantenimiento.getBtnNuevo().setToolTipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + n"));
-		mantenimiento.getBtnGrabar().setToolTipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + g"));
-		mantenimiento.getBtnSalir().setToolTipText(Recursos.generarATorrentTooltipTextShortcutButton("Alt + f4 OR esq"));
+		mantenimiento.btnBuscarSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + f"));
+		mantenimiento.btnNuevoSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + n"));
+		mantenimiento.btnGrabarSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + g"));
+		mantenimiento.btnSalirSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Alt + f4 OR esq"));
 	}
 
 	public void visibilidadBtn() {
 		if(entidadSeleccionado == null){
-			mantenimiento.getBtnGrabar().setEnabled(false);
-			mantenimiento.getBtnEliminar().setEnabled(false);
+			mantenimiento.btnGrabarIsEnabled(false);
+			mantenimiento.btnEliminarIsEnabled(false);
 		}else {
-			mantenimiento.getBtnGrabar().setEnabled(true);
-			mantenimiento.getBtnEliminar().setEnabled(true);
+			mantenimiento.btnGrabarIsEnabled(true);
+			mantenimiento.btnEliminarIsEnabled(true);
 		}
 		
 	}
@@ -120,7 +119,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 				}
 				else{
 					entidadSeleccionado.update(usr);
-					mantenimiento.getBtnBuscar().notifyListeners(SWT.Selection, new Event());
+					mantenimiento.btnBuscarSelected();
 					borrar();
 					mantenimiento.openInformation(
 							"Información",
@@ -165,7 +164,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 							"Informacion",
 							"El elemento seleccionado se ha borrado satisfactoriamente "
 							);
-					mantenimiento.getBtnBuscar().notifyListeners(SWT.Selection, new Event());
+					mantenimiento.btnBuscarSelected();
 				} catch(HibernateException he){
 					mantenimiento.openError(
 							"Error",
@@ -184,7 +183,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 					new String[]{"Si", "No"});
 			
 			if(result == 0){
-				mantenimiento.getBtnGrabar().notifyListeners(SWT.Selection, new Event());
+				mantenimiento.btnGrabarSelected();
 			}
 		}
 		mantenimiento.getShell().close();
