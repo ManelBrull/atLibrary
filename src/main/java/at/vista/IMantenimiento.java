@@ -11,10 +11,7 @@ import org.eclipse.swt.widgets.Table;
  * interfaces de Mantenimiento.
  *
  */
-public interface IMantenimiento {
-	public void openInformation(String cabecera, String mensaje);
-	public void openError(String cabecera, String mensaje);
-	public int openQuestion(String cabecera, String mensaje, String[] opciones);
+public interface IMantenimiento extends IMensajes {
 	
 	public void btnBuscarSelected();
 	public void btnBuscarSetTooltipText(String text);
