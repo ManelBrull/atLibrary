@@ -14,10 +14,7 @@ public interface IControlador {
 	 * Se pueblan las combobox y se añaden los shortcut
 	 */
 	public void inicializar();
-	/**
-	 * Añade los atajos de teclado a la interfaz
-	 */
-	public void addShortcuts();
+
 	/**
 	 * Configura los botones que deben ser visibles o no
 	 */

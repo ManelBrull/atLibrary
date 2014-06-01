@@ -3,28 +3,18 @@ package at.controlador;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.TableItem;
 import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
 import at.vista.IMantenimiento;
-import at.vista.interfaz.Recursos;
 
 public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> implements IControladorMantenimiento {
 	/**
 	 * Interfaz que se controla
 	 */
 	protected IMantenimiento mantenimiento;
-	/**
-	 * Referencia a los accesos directos
-	 */
-	protected Listener shortcut;
 	/**
 	 * Objeto seleccionado
 	 */
@@ -43,34 +33,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 	}
 	
 	public void inicializar() {
-		addShortcuts();
 		visibilidadBtn();
-	}
-	
-	public void addShortcuts() {
-		shortcut = new Listener(){
-			@Override
-			public void handleEvent(Event e) {
-				if(((e.stateMask & SWT.CTRL) == SWT.CTRL) && (e.keyCode == 'f')){
-					mantenimiento.btnBuscarSelected();
-				}
-				if(((e.stateMask & SWT.CTRL) == SWT.CTRL) && (e.keyCode == 'n')){
-					mantenimiento.btnNuevoSelected();
-				}
-				if(((e.stateMask & SWT.CTRL) == SWT.CTRL) && (e.keyCode == 'g')){
-					mantenimiento.btnGrabarSelected();
-				}
-				if((((e.stateMask & SWT.ALT) == SWT.ALT) && (e.keyCode == SWT.F4)) || 
-						(e.keyCode == SWT.ESC)){
-					mantenimiento.btnSalirSelected();
-				}
-			}
-		};
-		mantenimiento.getShell().getDisplay().addFilter(SWT.KeyDown, shortcut);
-		mantenimiento.btnBuscarSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + f"));
-		mantenimiento.btnNuevoSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + n"));
-		mantenimiento.btnGrabarSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + g"));
-		mantenimiento.btnSalirSetTooltipText(Recursos.generarATorrentTooltipTextShortcutButton("Alt + f4 OR esq"));
 	}
 
 	public void visibilidadBtn() {
@@ -186,22 +149,21 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 				mantenimiento.btnGrabarSelected();
 			}
 		}
-		mantenimiento.getShell().close();
+		mantenimiento.cerrarDialog();
 	}
 
 	public void buscar() {
 		if(entidadSeleccionado != null){
 			borrar();
 		}
-		mantenimiento.getTable().removeAll();
+		mantenimiento.vaciarTabla();
 		filtro = new ArrayList <T>();
 		try {
 			Iterator <T> iter = getIteratorFiltro();
 			while(iter.hasNext()){
 				T u = iter.next();
 				filtro.add(u);
-				TableItem item = new TableItem(mantenimiento.getTable(), SWT.NONE);
-				item.setText(u.toTable());
+				mantenimiento.anadirElemento(u.toTable());
 			}
 		} catch (HibernateException he){
 			mantenimiento.openError(
@@ -226,7 +188,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 	
 
 	public void elementoFiltroSeleccionado() {
-		entidadSeleccionado = filtro.get(mantenimiento.getTable().getSelectionIndex());
+		entidadSeleccionado = filtro.get(mantenimiento.elementoElegidoTabla());
 		if(entidadSeleccionado != null){
 			rellenarInterfaz();
 			visibilidadBtn();
@@ -241,7 +203,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 	public void borrar() {
 		entidadSeleccionado = null;
 		visibilidadBtn();
-		mantenimiento.getTable().removeAll();
+		mantenimiento.vaciarTabla();
 		filtro = new ArrayList<T>();
 		borrarInterfaz();
 	}
@@ -282,9 +244,5 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 		else{
 			return false;
 		}
-	}
-
-	public void cerrarShell() {
-		mantenimiento.getShell().getDisplay().removeFilter(SWT.KeyDown, shortcut);
 	}
 }
