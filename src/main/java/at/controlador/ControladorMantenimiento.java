@@ -9,7 +9,16 @@ import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
 import at.vista.IMantenimiento;
-
+/**
+ * 
+ * @author ManelBrull
+ *
+ * @param <T> Entidad a la que hace referencia el controlador
+ * 
+ * Implementación de un controlador para una interfaz de mantenimiento, que 
+ * efectúa sus acciones sobre una entidad que implemente ICrud y que este preparada para 
+ * ser un filtro
+ */
 public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> implements IControladorMantenimiento {
 	/**
 	 * Interfaz que se controla
@@ -31,18 +40,24 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 	public ControladorMantenimiento(IMantenimiento mant){
 		this.mantenimiento = mant;
 	}
-	
+	/**
+	 * Inicializa la interfaz
+	 */
 	public void inicializar() {
 		visibilidadBtn();
 	}
 
+	/**
+	 * Habilita o no los componentes en función de la entidad
+	 * que se ha seleccionado 
+	 */
 	public void visibilidadBtn() {
 		if(entidadSeleccionado == null){
-			mantenimiento.btnGrabarIsEnabled(false);
-			mantenimiento.btnEliminarIsEnabled(false);
+			mantenimiento.setBtnGrabarEnabled(false);
+			mantenimiento.setBtnEliminarEnabled(false);
 		}else {
-			mantenimiento.btnGrabarIsEnabled(true);
-			mantenimiento.btnEliminarIsEnabled(true);
+			mantenimiento.setBtnGrabarEnabled(true);
+			mantenimiento.setBtnEliminarEnabled(true);
 		}
 		
 	}
@@ -101,8 +116,6 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 		}
 	}
 
-
-
 	public void eliminar() {
 		if(entidadSeleccionado == null){
 			mantenimiento.openError(
@@ -135,7 +148,6 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 				} 
 			}
 		}
-		
 	}
 
 	public void salir() {
@@ -171,6 +183,7 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 					"Ha ocurrido un error en la base de datos");
 		}
 	}
+	
 	/**
 	 * Debe obtenerse un iterador que devuelva todos los resultados
 	 * Obtenidos al buscar mediante el filtro. Se ejecuta desde buscar.
@@ -223,16 +236,14 @@ public abstract class ControladorMantenimiento <T extends ICrud<T> & IEsFiltro> 
 	 */
 	public abstract T creaObjeto() throws CampoRequeridoException;
 	
-	/**
-	 * Crea un objeto leyendo los datos de la interfaz.
-	 * IMPORTANTE!! NO TIENE QUE GUARDARLO EN LA BASE DE DATOS
-	 * Si algo va mal devuelve null
-	 * @return
-	 */
-	public abstract T creaObjetoSilencioso();
 		
 	public boolean comprobarCambiosObjetoActivo() {
-		T usr = creaObjetoSilencioso();
+		T usr;
+		try {
+			usr = creaObjeto();
+		} catch (CampoRequeridoException ex){
+			return false;
+		}
 		if (usr != null && entidadSeleccionado != null){
 			if(entidadSeleccionado.equals(usr)){
 				return false;

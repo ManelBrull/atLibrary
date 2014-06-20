@@ -14,9 +14,8 @@ import org.eclipse.wb.swt.SWTResourceManager;
  * Para implementarlas en el dialog es imprescindible crear un composite de tamaño
  * 130x230 y crear una nueva instancia de ImagenesLaterarles(compositePadre, SWT.NONE)
  * 
- * Hay que llamar a dispose para liberar los recursos
  * 
- * @author brullp
+ * @author ManelBrull
  *
  */
 public class ImagenesLaterales extends Composite {

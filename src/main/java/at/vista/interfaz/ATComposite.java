@@ -4,7 +4,13 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wb.swt.SWTResourceManager;
-
+/**
+ * 
+ * @author ManelBrull
+ *
+ * Composite de la organizacion
+ *
+ */
 public class ATComposite extends Composite {
 
 	/** Color para rellenar los margenes **/

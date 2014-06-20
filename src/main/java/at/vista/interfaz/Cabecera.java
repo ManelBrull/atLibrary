@@ -13,7 +13,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  * en el constructor en medio del campo delimitado.
  * 
  *  
- * @author brullp
+ * @author ManelBrull
  *
  */
 public class Cabecera extends Composite {
@@ -33,14 +33,14 @@ public class Cabecera extends Composite {
 	/** Color de la letra de la cabecera **/
 	private  RGB rgbCabecera = new RGB(255, 255, 255);
 	
-/**
- * 
- * @param parent
- * @param style
- * @param titulo
- * @param width
- * @param height
- */
+	/**
+	 * 
+	 * @param parent
+	 * @param style
+	 * @param titulo
+	 * @param width
+	 * @param height
+	 */
 	public Cabecera(Composite parent, int style, String titulo, int width, int height) {
 		super(parent, style);
 		setSize(width, height);

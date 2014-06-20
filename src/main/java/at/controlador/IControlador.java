@@ -4,7 +4,7 @@ package at.controlador;
  * @author brullp
  * 
  * Abstracción de las operaciones mas básicas de un controlador
- * y que en principio deben ser comunes a todas las user interfaces
+ * y que en principio deben ser comunes a todas las interfaces de usuario
  *
  */
 public interface IControlador {
@@ -20,8 +20,7 @@ public interface IControlador {
 	 */
 	public void visibilidadBtn();
 	/**
-	 * Acción que debe ser ejecutada cuando se cierra la ventana activa,
-	 * generalmente desregistrar los atajos de teclado del display.
+	 * Acciones a ejecutar cuando se sale de al interfaz
 	 */
-	public void cerrarShell();
+	public void salir();
 }

@@ -12,7 +12,13 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-
+/**
+ * 
+ * @author ManelBrull
+ * 
+ * Dialog que pide un string por pantalla
+ *
+ */
 public class ATStringDialog extends ATDialog {
 
 	protected String result;
@@ -28,9 +34,11 @@ public class ATStringDialog extends ATDialog {
 	
 
 	/**
-	 * Create the dialog.
+	 * Constructor del dialog
 	 * @param parent
-	 * @param style
+	 * @param title
+	 * @param textoAMostrar
+	 * @param width
 	 */
 	public ATStringDialog(Shell parent, String title, String textoAMostrar, int width) {
 		super(parent, title);

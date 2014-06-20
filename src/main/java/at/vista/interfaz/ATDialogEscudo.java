@@ -9,7 +9,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
+/**
+ * 
+ * @author ManelBrull
+ * 
+ * Dialog de la organización con escudo y barras azules
+ *
+ */
 public abstract class ATDialogEscudo extends Dialog {
 		
 	/** Titulo que se mostrara en el shell **/
@@ -25,10 +31,10 @@ public abstract class ATDialogEscudo extends Dialog {
 	protected Cabecera cabecera;
 
 	/**
-	 * Create the Atorrent Dialog
+	 * 
 	 * @param parent
-	 * @param title titulo del shell
-	 * @param titleCabecera titulo de la cabecera
+	 * @param title
+	 * @param titleCabecera
 	 */
 	public ATDialogEscudo(Shell parent, String title, String titleCabecera) {
 		super(parent, Recursos.MY_APP_STYLE);

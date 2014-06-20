@@ -10,42 +10,37 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-
-public class ReportManager implements IAbrirInformes {
+/**
+ * 
+ * @author ManelBrull
+ * 
+ * Lanzador de informes utilizando JasperReport
+ * 
+ *
+ */
+public class JasperReportManager implements IAbrirInformes {
 	
-	
+	/** Nombre del parámetro para la imagen de la cabecera izquierda **/
 	private static String imgIzq = "imagenIzq";
-	private static URL imagenIzq = ReportManager.class.getResource(
+	/** Ruta de la cabecera izquerida **/
+	private static URL imagenIzq = JasperReportManager.class.getResource(
 			"/InformeIzquierdo.jpg");
+	/** Nombre del parámetro para la imagen de la cabecera derecha **/
 	private static String imgDer = "imagenDer";
-	private static URL imagenDer = ReportManager.class.getResource(
+	/** Ruta de la cabecera derecha **/
+	private static URL imagenDer = JasperReportManager.class.getResource(
 			"/InformeDerecha.gif");
 	
-	/**
-	 * Lanza el reporte añadiendole solo las imagenes
-	 * @param jasperReport
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 * @throws JRException
-	 * @throws IOException
-	 */
+	@Override
 	public void lanzarReporte(InputStream jasperReport) throws ClassNotFoundException, SQLException, JRException, IOException{
 		JasperPrint jasperPrint;
-		HashMap	jasperParameter = fillParametros(null, null);
+		HashMap	jasperParameter = fillParametros(new String[0],new Object[0]);
 		jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameter);
 		JasperViewer.viewReport(jasperPrint, false);
 		jasperReport.close();
 	}
-	/**
-	 * Lanza el reporte añadiendole las imágenes de atorrent y los parametros que se le pasan 
-	 * @param jasperReport
-	 * @param nomParametro
-	 * @param valParametro
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 * @throws JRException
-	 * @throws IOException
-	 */
+	
+	@Override
 	public void lanzarReporte(InputStream jasperReport, String[] nomParametro, Object[] valParametro) throws ClassNotFoundException, SQLException, JRException, IOException{
 		JasperPrint jasperPrint;
 		HashMap	jasperParameter = fillParametros(nomParametro, valParametro);
@@ -53,19 +48,19 @@ public class ReportManager implements IAbrirInformes {
 		JasperViewer.viewReport(jasperPrint, false);
 		jasperReport.close();
 	}
-		
+	
+	/**
+	 * Metodo auxiliar para crear el map de parametros
+	 * @param nomParametro
+	 * @param valParametro
+	 * @return
+	 */
 	private static HashMap <String, Object> fillParametros(String[] nomParametro, Object[] valParametro){
 		HashMap <String, Object> jasperParameter = new HashMap<String, Object>();
-		jasperParameter.put(imgIzq, imagenIzq);
-		jasperParameter.put(imgDer, imagenDer);
-		if(nomParametro == null){
-			return jasperParameter;
-		}
-		else {
-			for(int i = 0; i < nomParametro.length; i++){
-				jasperParameter.put(nomParametro[i], valParametro[i]);
-			}
-			return jasperParameter;
-		}
+		jasperParameter.put("imagenIzq", imagenIzq);
+		jasperParameter.put("imagenDer", imagenDer);
+		for(int i = 0; i < nomParametro.length; i++)
+			jasperParameter.put(nomParametro[i], valParametro[i]);
+		return jasperParameter;
 	}
 }

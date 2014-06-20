@@ -21,10 +21,6 @@ public interface IControladorMantenimiento extends IControlador {
 	 */
 	public void eliminar();	
 	/**
-	 * Acciones a ejecutar cuando se sale de al interfaz
-	 */
-	public void salir();
-	/**
 	 * Busca los elementos de acuerdo a un filtro elegido por nosotros
 	 */
 	public void buscar();

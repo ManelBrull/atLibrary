@@ -8,7 +8,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
+/**
+ * 
+ * @author ManelBrull
+ * 
+ * Crea un Dialog de la organizacion
+ *
+ */
 public abstract class ATDialog extends Dialog {
 		
 	/** Titulo que se mostrara en el shell **/
@@ -26,10 +32,9 @@ public abstract class ATDialog extends Dialog {
 	
 
 	/**
-	 * Create the Atorrent Dialog
+	 * Constructor del dialog
 	 * @param parent
-	 * @param title titulo del shell
-	 * @param titleCabecera titulo de la cabecera
+	 * @param title
 	 */
 	public ATDialog(Shell parent, String title) {
 		super(parent, Recursos.MY_APP_STYLE);
